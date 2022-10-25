@@ -1,12 +1,15 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
+import React, { useContext } from 'react'
+import { Button, Image } from 'react-bootstrap'
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
 import logo from '../../../assets/images/uttaron-logo.svg'
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider'
+import { FaUser, IconName } from 'react-icons/fa'
 
 const Header = () => {
+  const { user } = useContext(AuthContext)
   return (
     <Navbar container collapseOnSelect expand="lg" bg="info" variant="">
       <Container>
@@ -24,9 +27,6 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link className="me-3 ml-5" to="/home">
-              <Button variant="secondary">Home</Button>
-            </Link>
             <Link className="me-3" to="/courses">
               <Button variant="secondary">COURSES</Button>
             </Link>
@@ -36,6 +36,11 @@ const Header = () => {
             <Link className="me-3" to="/faq">
               <Button variant="secondary">FAQ</Button>
             </Link>
+          </Nav>
+          <Nav>
+            <Nav.Link className="me-3" href="#deets">
+              {user?.displayName}
+            </Nav.Link>
           </Nav>
           <Nav>
             <Link className="me-3" to="/login">

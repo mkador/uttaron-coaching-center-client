@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   MDBBtn,
   MDBContainer,
@@ -9,8 +9,20 @@ import {
 } from 'mdb-react-ui-kit'
 import login from '../../assets/images/loginpic.jpg'
 import { FaGithub, FaGoogle, IconName } from 'react-icons/fa'
+import { AuthContext } from '../../context/AuthProvider/AuthProvider'
+import { GoogleAuthProvider } from 'firebase/auth'
 
 const Login = () => {
+  const { popUpGoogleLogin } = useContext(AuthContext)
+  const googleProvider = new GoogleAuthProvider()
+  const handleGoogleSign = () => {
+    popUpGoogleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user
+        console.log(user)
+      })
+      .catch((error) => console.error(error))
+  }
   return (
     <MDBContainer fluid>
       <MDBRow>
@@ -44,7 +56,10 @@ const Login = () => {
             <button className="bg-info px-3 mb-2 mx-5 rounded w-100">
               Login
             </button>
-            <button className="bg-info px-3 mb-2 mx-5 rounded w-100">
+            <button
+              onClick={handleGoogleSign}
+              className="bg-info px-3 mb-2 mx-5 rounded w-100"
+            >
               <FaGoogle></FaGoogle> Gmail
             </button>
             <button className="bg-info px-3 mb-2 mx-5 rounded w-100">

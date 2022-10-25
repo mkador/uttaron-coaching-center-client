@@ -13,7 +13,7 @@ const Blog = () => {
       <section>
         <MDBTypography
           tag="h3"
-          className="text-center mb-4 pb-2 text-primary fw-bold"
+          className="text-center mb-3 mt-4 pb-2 text-primary fw-bold"
         >
           Questions & Answers
         </MDBTypography>
@@ -53,18 +53,21 @@ const Blog = () => {
           </MDBCol>
           <MDBCol md="6" lg="4" className="mb-4">
             <MDBTypography tag="h6" className="mb-3 text-primary">
-              <MDBIcon fas icon="user text-primary pe-2" /> What other options
-              do you have to implement authentication in Firebase?
+              <MDBIcon fas icon="book-open text-primary pe-2" /> Another
+              question that is longer than usual
             </MDBTypography>
             <p>
-              On this page. <br />
-              Connect your app to Firebase. <br />
-              Add Firebase Authentication to your app. <br />
-              <br />
-              Check current auth state. <br />
-              Sign up new users. <br />
-              Sign in existing users. <br />
-              Access user information.
+              Node.js accepts the request from the clients and sends the
+              response, while working with the request node.js handles them with
+              a single thread. To operate I/O operations or requests node.js use
+              the concept of threads. Thread is a sequence of instructions that
+              the server needs to perform. It runs parallel on the server to
+              provide the information to multiple clients. Node.js is an event
+              loop single-threaded language. It can handle concurrent requests
+              with a single thread without blocking it for one request.
+              <br /> Node.js basically works on two concept
+              <br /> Asynchronous
+              <br /> Non-blocking I/O
             </p>
           </MDBCol>
           <MDBCol md="6" lg="4" className="mb-4">
@@ -91,23 +94,21 @@ const Blog = () => {
               to build fully-functional applications.
             </p>
           </MDBCol>
+
           <MDBCol md="6" lg="4" className="mb-4">
             <MDBTypography tag="h6" className="mb-3 text-primary">
-              <MDBIcon fas icon="book-open text-primary pe-2" /> Another
-              question that is longer than usual
+              <MDBIcon fas icon="user text-primary pe-2" /> What other options
+              do you have to implement authentication in Firebase?
             </MDBTypography>
             <p>
-              Node.js accepts the request from the clients and sends the
-              response, while working with the request node.js handles them with
-              a single thread. To operate I/O operations or requests node.js use
-              the concept of threads. Thread is a sequence of instructions that
-              the server needs to perform. It runs parallel on the server to
-              provide the information to multiple clients. Node.js is an event
-              loop single-threaded language. It can handle concurrent requests
-              with a single thread without blocking it for one request.
-              <br /> Node.js basically works on two concept
-              <br /> Asynchronous
-              <br /> Non-blocking I/O
+              On this page. <br />
+              Connect your app to Firebase. <br />
+              Add Firebase Authentication to your app. <br />
+              <br />
+              Check current auth state. <br />
+              Sign up new users. <br />
+              Sign in existing users. <br />
+              Access user information.
             </p>
           </MDBCol>
         </MDBRow>
