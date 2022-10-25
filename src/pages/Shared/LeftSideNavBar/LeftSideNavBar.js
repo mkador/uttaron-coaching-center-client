@@ -10,10 +10,15 @@ const LeftSideNavBar = () => {
   }, [])
   return (
     <div>
-      <h4 className="font-monospace fw-bold mt-4">Our Courses</h4>
+      <h4 className="font-monospace fw-bold mt-4">
+        Our Courses:{courses.length}
+      </h4>
       <div>
         {courses.map((course) => (
-          <p className="font-monospace fw-bold bg-warning p-2" key={course.id}>
+          <p
+            className="font-monospace fw-bold bg-info rounded-2 p-2"
+            key={course.id}
+          >
             <Link>{course.name}</Link>
           </p>
         ))}
