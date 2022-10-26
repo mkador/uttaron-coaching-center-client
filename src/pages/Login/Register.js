@@ -9,7 +9,13 @@ import {
 } from 'mdb-react-ui-kit'
 import register from '../../assets/images/register.png'
 
+import { Link } from 'react-router-dom'
+import { Button, Form } from 'react-bootstrap'
+
 const Register = () => {
+  const handleSubmit = (event) => {
+    console.log('clicked')
+  }
   return (
     <MDBContainer fluid>
       <MDBRow>
@@ -25,44 +31,53 @@ const Register = () => {
               Register
             </h3>
 
-            <MDBInput
-              wrapperClass="mb-4 mx-5 w-100"
-              label="Email address"
-              id="formControlLg"
-              type="email"
-              size="md"
-            />
-            <MDBInput
-              wrapperClass="mb-2 mx-5 w-100"
-              label="Name"
-              id="formControlLg"
-              type="name"
-              size="md"
-            />
-            <MDBInput
-              wrapperClass="mb-2 mx-5 w-100"
-              label="photoURL"
-              id="formControlLg"
-              type="photoURL"
-              size="md"
-            />
-            <MDBInput
-              wrapperClass="mb-2 mx-5 w-100"
-              label="Password"
-              id="formControlLg"
-              type="password"
-              size="md"
-            />
+            <Form>
+              <input
+                wrapperClass="mb-2 mx-5 w-100"
+                label="Name"
+                type="text"
+                size="md"
+                name="name"
+              />
+              <MDBInput
+                wrapperClass="mb-4 mx-5 w-100"
+                label="Email address"
+                id="formControlLg"
+                type="email"
+                size="md"
+                name="email"
+              />
 
-            <button className="bg-info px-3 mb-2 mx-5 rounded w-100">
-              Register
-            </button>
+              <MDBInput
+                wrapperClass="mb-2 mx-5 w-100"
+                label="photoURL"
+                id="formControlLg"
+                type="photoURL"
+                size="md"
+                name="text"
+              />
+              <MDBInput
+                wrapperClass="mb-2 mx-5 w-100"
+                label="Password"
+                id="formControlLg"
+                type="password"
+                size="md"
+                name="password"
+              />
+
+              <Button
+                onClick={handleSubmit}
+                className="bg-info px-3 mb-2 mx-5 rounded w-100"
+              >
+                Register
+              </Button>
+            </Form>
 
             <p className="ms-5">
               Already have an Account?{' '}
-              <a href="#!" class="link-info">
+              <Link to="/register" class="link-info">
                 Sign here
-              </a>
+              </Link>
             </p>
           </div>
         </MDBCol>

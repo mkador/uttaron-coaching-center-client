@@ -11,6 +11,8 @@ import login from '../../assets/images/loginpic.jpg'
 import { FaGithub, FaGoogle, IconName } from 'react-icons/fa'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider'
 import { GoogleAuthProvider } from 'firebase/auth'
+import { Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
   const { popUpGoogleLogin } = useContext(AuthContext)
@@ -71,10 +73,10 @@ const Login = () => {
               </a>
             </p>
             <p className="ms-5">
-              Don't have an account?{' '}
-              <a href="#!" class="link-info">
-                Register here
-              </a>
+              Don't have an account?
+              <Link to="/register" class="link-info">
+                Register Now
+              </Link>
             </p>
           </div>
         </MDBCol>

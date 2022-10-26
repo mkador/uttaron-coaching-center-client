@@ -22,9 +22,9 @@ const Faq = () => {
                 <u>Higlighted short answer.</u> And some kind of detailed list.
               </p>
               <ul>
-                <li>list item 1</li>
-                <li>list item 2</li>
-                <li>list item 3</li>
+                <li>You can ask Anything</li>
+                <li>Let's know About your Idea about us</li>
+                <li>And Fell Free to ask our Weak points </li>
               </ul>
             </div>
 
@@ -87,9 +87,10 @@ const Faq = () => {
             </p>
 
             <form>
-              <MDBInput label="Email address" required className="mb-4" />
               <MDBTextArea rows={4} label="Message" className="mb-4" />
-              <MDBBtn block>Send</MDBBtn>
+              <MDBInput label="Email address" required className="mb-4" />
+
+              <button className="primary">Send</button>
             </form>
           </MDBCol>
         </MDBRow>
