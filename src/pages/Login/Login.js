@@ -1,17 +1,11 @@
 import React, { useContext } from 'react'
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBIcon,
-  MDBInput,
-} from 'mdb-react-ui-kit'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+
 import login from '../../assets/images/loginpic.jpg'
 import { FaGithub, FaGoogle, IconName } from 'react-icons/fa'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider'
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth'
-import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
@@ -19,6 +13,19 @@ const Login = () => {
   const { popUpWithGitLogin } = useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider()
   const gitProvider = new GithubAuthProvider()
+
+  const { signIn } = useContext(AuthContext)
+  const handleSignIn = (e) => {
+    e.preventDefault()
+    const email = e.target.email.value
+    const password = e.target.password.value
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user
+        console.log(user)
+      })
+      .catch((error) => console.error(error))
+  }
 
   const handleGoogleSign = () => {
     popUpGoogleLogin(googleProvider)
@@ -37,65 +44,68 @@ const Login = () => {
       .catch((error) => console.error(error))
   }
   return (
-    <MDBContainer fluid>
-      <MDBRow>
-        <MDBCol sm="6" className="d-none d-sm-block px-0">
-          <img src={login} alt="Login image" className="w-100" />
-        </MDBCol>
-        <MDBCol sm="6">
-          <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-            <h3
-              className="fw-normal mb-3 ps-5 pb-3"
-              style={{ letterSpacing: '1px' }}
-            >
-              Log in
-            </h3>
+    <div className="d-flex">
+      <div className="mt-4">
+        <img src={login} alt="Login image" className="mt-4 w-100" />
+      </div>
 
-            <MDBInput
-              wrapperClass="mb-4 mx-5 w-100"
-              label="Email address"
-              id="formControlLg"
+      <div>
+        <h3
+          className="fw-normal mb-3 ps-5 pb-3 mt-3"
+          style={{ letterSpacing: '1px' }}
+        >
+          Login
+        </h3>
+        <Form onSubmit={handleSignIn}>
+          <Form.Group className="mb-2 w-100" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
               type="email"
-              size="lg"
+              name="email"
+              placeholder="Enter email"
+              required
             />
-            <MDBInput
-              wrapperClass="mb-4 mx-5 w-100"
-              label="Password"
-              id="formControlLg"
-              type="password"
-              size="lg"
-            />
+          </Form.Group>
 
-            <button className="bg-info px-3 mb-2 mx-5 rounded w-100">
-              Login
-            </button>
-            <button
-              onClick={handleGoogleSign}
-              className="bg-info px-3 mb-2 mx-5 rounded w-100"
-            >
-              <FaGoogle></FaGoogle> Gmail
-            </button>
-            <button
-              onClick={handleGitSignIn}
-              className="bg-info px-3 mb-2 mx-5 rounded w-100"
-            >
-              <FaGithub></FaGithub> github
-            </button>
-            <p className="small mb-2 pb-lg-3 ms-4">
-              <a class="text-muted mx-4" href="#!">
-                Forgot password?
-              </a>
-            </p>
-            <p className="ms-5">
-              Don't have an account?
-              <Link to="/register" class="link-info">
-                Register Now
-              </Link>
-            </p>
-          </div>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+          <Form.Group className="mb-2 w-100" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </Form.Group>
+
+          <button className="bg-info px-3 mt-3 mx-2 rounded w-100">
+            Login
+          </button>
+        </Form>
+        <button
+          onClick={handleGoogleSign}
+          className="bg-info px-3 mt-3 mx-2 rounded w-100"
+        >
+          <FaGoogle></FaGoogle> Gmail
+        </button>
+        <button
+          onClick={handleGitSignIn}
+          className="bg-info px-3 mt-3 mx-2 rounded w-100"
+        >
+          <FaGithub></FaGithub> github
+        </button>
+        <p className="">
+          <a class="text-muted mx-4" href="#!">
+            Forgot password?
+          </a>
+        </p>
+        <p className="">
+          Don't have an account?
+          <Link to="/register" class="link-info">
+            Register Now
+          </Link>
+        </p>
+      </div>
+    </div>
   )
 }
 

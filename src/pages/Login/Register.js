@@ -1,88 +1,89 @@
-import React from 'react'
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBIcon,
-  MDBInput,
-} from 'mdb-react-ui-kit'
-import register from '../../assets/images/register.png'
-
+import React, { useContext } from 'react'
+import Button from 'react-bootstrap/Button'
+import login from '../../assets/images/register.png'
+import Form from 'react-bootstrap/Form'
+import { AuthContext } from '../../context/AuthProvider/AuthProvider'
 import { Link } from 'react-router-dom'
-import { Button, Form } from 'react-bootstrap'
 
 const Register = () => {
-  const handleSubmit = (event) => {
-    console.log('clicked')
+  const { createUser } = useContext(AuthContext)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const name = e.target.name.value
+    const photoURL = e.target.photoURL.value
+    const email = e.target.email.value
+    const password = e.target.password.value
+    console.log(name, photoURL, email)
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user
+        console.log(user)
+      })
+      .catch((error) => console.error(error))
   }
   return (
-    <MDBContainer fluid>
-      <MDBRow>
-        <MDBCol sm="6" className="d-none d-sm-block px-0">
-          <img src={register} alt="Login image" className=" mt-5 rounded" />
-        </MDBCol>
-        <MDBCol sm="6">
-          <div className="d-flex flex-column justify-content-center h-custom-2 w-75 pt-4">
-            <h3
-              className="fw-normal mb-3 ps-5 pb-2"
-              style={{ letterSpacing: '1px' }}
-            >
-              Register
-            </h3>
+    <div className="d-flex">
+      <div>
+        <img src={login} alt="Login image" className="w-100" />
+      </div>
+      <div>
+        <h3
+          className="fw-normal mb-2 ps-5 pb-3 mt-3"
+          style={{ letterSpacing: '1px' }}
+        >
+          Register
+        </h3>
+        <Form onSubmit={handleSubmit} className="mt-4">
+          <Form.Group className="mb-2 w-100" controlId="formBasicEmail">
+            <Form.Label>Your Name</Form.Label>
+            <Form.Control type="text" name="name" placeholder="Enter  Name" />
+          </Form.Group>
+          <Form.Group className="mb-2 w-100" controlId="formBasicEmail">
+            <Form.Label>Your Photo URL</Form.Label>
+            <Form.Control
+              type="text"
+              name="photoURL"
+              placeholder="Enter photoURL "
+            />
+          </Form.Group>
+          <Form.Group className="mb-2 w-100" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              required
+            />
+          </Form.Group>
 
-            <Form>
-              <input
-                wrapperClass="mb-2 mx-5 w-100"
-                label="Name"
-                type="text"
-                size="md"
-                name="name"
-              />
-              <MDBInput
-                wrapperClass="mb-4 mx-5 w-100"
-                label="Email address"
-                id="formControlLg"
-                type="email"
-                size="md"
-                name="email"
-              />
-
-              <MDBInput
-                wrapperClass="mb-2 mx-5 w-100"
-                label="photoURL"
-                id="formControlLg"
-                type="photoURL"
-                size="md"
-                name="text"
-              />
-              <MDBInput
-                wrapperClass="mb-2 mx-5 w-100"
-                label="Password"
-                id="formControlLg"
-                type="password"
-                size="md"
-                name="password"
-              />
-
-              <Button
-                onClick={handleSubmit}
-                className="bg-info px-3 mb-2 mx-5 rounded w-100"
-              >
-                Register
-              </Button>
-            </Form>
-
-            <p className="ms-5">
-              Already have an Account?{' '}
-              <Link to="/register" class="link-info">
-                Sign here
-              </Link>
-            </p>
-          </div>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+          <Form.Group className="mb-2 w-100" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicCheckbox">
+            <Form.Check type="checkbox" label="Check me out" />
+          </Form.Group>
+          <Form.Text className="text-muted">
+            We'll never share your email with anyone else.
+          </Form.Text>
+          <Button variant="primary" type="submit">
+            Register
+          </Button>
+        </Form>
+        <p className="mt-2">
+          Already have an account?
+          <Link to="/login" class="link-info">
+            Sign In
+          </Link>
+        </p>
+      </div>
+    </div>
   )
 }
 
