@@ -8,11 +8,13 @@ const Course = () => {
   return (
     <div>
       <h5 className="font-monospace fw-bold mt-4 text-center">
-        Go Through THe Courses
+        Go Through Our Courses
       </h5>
-      {allCourses.map((course) => (
-        <CourseCards key={course.id} course={course}></CourseCards>
-      ))}
+      <div className="row">
+        {allCourses.map((course) => (
+          <CourseCards key={course.id} course={course}></CourseCards>
+        ))}
+      </div>
     </div>
   )
 }

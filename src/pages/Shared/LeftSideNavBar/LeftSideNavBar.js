@@ -12,9 +12,7 @@ const LeftSideNavBar = () => {
 
   return (
     <div>
-      <h4 className="font-monospace fw-bold mt-3">
-        Our Courses:{courses.length}
-      </h4>
+      <h4 className="font-monospace fw-bold mt-3">Our Courses</h4>
       <div>
         {courses.map((course) => (
           <p

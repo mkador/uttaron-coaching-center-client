@@ -6,23 +6,28 @@ import login from '../../assets/images/loginpic.jpg'
 import { FaGithub, FaGoogle, IconName } from 'react-icons/fa'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider'
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const { popUpGoogleLogin } = useContext(AuthContext)
   const { popUpWithGitLogin } = useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider()
   const gitProvider = new GithubAuthProvider()
+  const navigate = useNavigate()
 
   const { signIn } = useContext(AuthContext)
   const handleSignIn = (e) => {
     e.preventDefault()
-    const email = e.target.email.value
-    const password = e.target.password.value
+    const form = e.target
+    const email = form.email.value
+    const password = form.password.value
+    console.log(email, password)
     signIn(email, password)
       .then((result) => {
         const user = result.user
         console.log(user)
+        form.reset()
+        navigate('/')
       })
       .catch((error) => console.error(error))
   }
@@ -51,7 +56,7 @@ const Login = () => {
 
       <div>
         <h3
-          className="fw-normal mb-3 ps-5 pb-3 mt-3"
+          className="font-monospace fw-bold mt-3 mb-3 ps-5 pb-3"
           style={{ letterSpacing: '1px' }}
         >
           Login
