@@ -54,35 +54,35 @@ const Footer = () => {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
                 <MDBIcon icon="gem" className="me-3" />
-                Company name
+                Uttaron Coaching Center(UCC)
               </h6>
               <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit.
+                People invest their time, money, energy or attention on things
+                that bring value. We all want to improve, fix, change, grow,
+                experience things in life that enrich it.
               </p>
             </MDBCol>
 
             <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Products</h6>
+              <h6 className="text-uppercase fw-bold mb-4">future courses</h6>
               <p>
                 <a href="#!" className="text-reset">
-                  Angular
+                  BCS Job Preparation
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-reset">
-                  React
+                  Govt. Job Preparation
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-reset">
-                  Vue
+                  Bank Job Preparation
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-reset">
-                  Laravel
+                  University Admission Preparation
                 </a>
               </p>
             </MDBCol>
@@ -92,17 +92,17 @@ const Footer = () => {
 
               <p>
                 <a href="#!" className="text-reset">
-                  Settings
+                  Mirpur-2
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-reset">
-                  Teachers
+                  Dhanmondi-32
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-reset">
-                  Help
+                  Gulshan
                 </a>
               </p>
             </MDBCol>

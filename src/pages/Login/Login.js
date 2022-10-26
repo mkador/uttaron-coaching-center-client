@@ -10,15 +10,26 @@ import {
 import login from '../../assets/images/loginpic.jpg'
 import { FaGithub, FaGoogle, IconName } from 'react-icons/fa'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider'
-import { GoogleAuthProvider } from 'firebase/auth'
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth'
 import { Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
   const { popUpGoogleLogin } = useContext(AuthContext)
+  const { popUpWithGitLogin } = useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider()
+  const gitProvider = new GithubAuthProvider()
+
   const handleGoogleSign = () => {
     popUpGoogleLogin(googleProvider)
+      .then((result) => {
+        const user = result.user
+        console.log(user)
+      })
+      .catch((error) => console.error(error))
+  }
+  const handleGitSignIn = () => {
+    popUpWithGitLogin(gitProvider)
       .then((result) => {
         const user = result.user
         console.log(user)
@@ -64,7 +75,10 @@ const Login = () => {
             >
               <FaGoogle></FaGoogle> Gmail
             </button>
-            <button className="bg-info px-3 mb-2 mx-5 rounded w-100">
+            <button
+              onClick={handleGitSignIn}
+              className="bg-info px-3 mb-2 mx-5 rounded w-100"
+            >
               <FaGithub></FaGithub> github
             </button>
             <p className="small mb-2 pb-lg-3 ms-4">

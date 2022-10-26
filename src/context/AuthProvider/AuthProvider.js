@@ -18,6 +18,10 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, provider)
   }
 
+  const popUpWithGitLogin = (provider) => {
+    return signInWithPopup(auth, provider)
+  }
+
   const logOut = () => {
     return signOut(auth)
       .then(() => {
@@ -38,7 +42,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  const auhtInformation = { user, popUpGoogleLogin, logOut }
+  const auhtInformation = { user, popUpGoogleLogin, logOut, popUpWithGitLogin }
 
   return (
     <AuthContext.Provider value={auhtInformation}>
