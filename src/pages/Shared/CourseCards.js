@@ -37,10 +37,10 @@ const CourseCards = ({ course }) => {
               src={picture}
             />
             <Card.Text>
-              {details.length > 200 ? (
+              {details.length > 50 ? (
                 <>
                   {' '}
-                  {details.slice(0, 250) + '...'}{' '}
+                  {details.slice(0, 100) + '...'}{' '}
                   <Link to={`/course/${course.id}`}>
                     <Button variant="info">Get Permission</Button>
                   </Link>{' '}

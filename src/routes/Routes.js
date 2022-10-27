@@ -19,12 +19,17 @@ export const routes = createBrowserRouter([
         path: '/courses/:id',
         element: <Course></Course>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/courses_details/${params.id}`),
+          fetch(
+            `https://uttaron-coaching-center-server.vercel.app/courses_details/${params.id}`,
+          ),
       },
       {
         path: '/courses',
         element: <Course></Course>,
-        loader: () => fetch('http://localhost:5000/coursesDetails'),
+        loader: () =>
+          fetch(
+            'https://uttaron-coaching-center-server.vercel.app/coursesDetails',
+          ),
       },
       {
         path: '/course/:id',
@@ -34,7 +39,9 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/course_details/${params.id}`),
+          fetch(
+            `https://uttaron-coaching-center-server.vercel.app/course_details/${params.id}`,
+          ),
       },
       {
         path: '/blog',
