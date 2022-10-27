@@ -6,8 +6,9 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider'
 import { Link } from 'react-router-dom'
 
 const Register = () => {
-  const [error, setError] = useState('')
-  const { createUser } = useContext(AuthContext)
+  const [accepted, setAccepted] = useState()
+  const [error, setError] = useState(false)
+  const { createUser, updateUserProfile } = useContext(AuthContext)
   const handleSubmit = (e) => {
     e.preventDefault()
     const form = e.target
@@ -23,11 +24,24 @@ const Register = () => {
         console.log(user)
         form.reset()
         setError()
+        handleUpdatedUserProfile(name, photoURL)
       })
       .catch((error) => {
         console.error(error)
         setError(error.message)
       })
+  }
+  const handleUpdatedUserProfile = (name, photoURL) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    }
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => console.error(error))
+  }
+  const handleAccepted = (e) => {
+    setAccepted(e.target.checked)
   }
   return (
     <div className="d-flex">
@@ -75,6 +89,7 @@ const Register = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check
+              onClick={handleAccepted}
               type="checkbox"
               label={
                 <>
@@ -90,7 +105,7 @@ const Register = () => {
           <Form.Text className="text-muted">
             <p className="text-danger">{error}</p>
           </Form.Text>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" disabled={!accepted}>
             Register
           </Button>
         </Form>

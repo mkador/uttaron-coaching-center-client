@@ -5,12 +5,12 @@ import { initializeApp } from 'firebase/app'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDd6NUtvLXZUoXjMEb7sO7beOk7CYRDOSo',
-  authDomain: 'uttaron-coaching-center-server.firebaseapp.com',
-  projectId: 'uttaron-coaching-center-server',
-  storageBucket: 'uttaron-coaching-center-server.appspot.com',
-  messagingSenderId: '712662880366',
-  appId: '1:712662880366:web:8896c58a1ea63a71de567f',
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 }
 
 // Initialize Firebase

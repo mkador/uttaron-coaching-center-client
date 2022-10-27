@@ -2,7 +2,8 @@ import React from 'react'
 import CardGroup from 'react-bootstrap/CardGroup'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
-import Image from 'react-bootstrap/Image'
+
+import Button from 'react-bootstrap/Button'
 import {
   FaCartArrowDown,
   FaEye,
@@ -40,7 +41,9 @@ const CourseCards = ({ course }) => {
                 <>
                   {' '}
                   {details.slice(0, 250) + '...'}{' '}
-                  <Link to={`/course/${course.id}`}>Read More</Link>{' '}
+                  <Link to={`/course/${course.id}`}>
+                    <Button variant="info">Get Permission</Button>
+                  </Link>{' '}
                 </>
               ) : (
                 <>{details}</>
