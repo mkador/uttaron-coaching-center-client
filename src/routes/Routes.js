@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import SingleCourseDetails from '../components/SingleCourseDetails'
+import TermsConditions from '../components/TermsConditions'
 import Main from '../layouts/Main'
 import Blog from '../pages/Blog/Blog'
 import Faq from '../pages/FAQ/Faq'
@@ -50,6 +51,10 @@ export const routes = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>,
+      },
+      {
+        path: '/terms_conditions',
+        element: <TermsConditions></TermsConditions>,
       },
     ],
   },

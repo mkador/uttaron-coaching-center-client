@@ -74,7 +74,18 @@ const Register = () => {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
+            <Form.Check
+              type="checkbox"
+              label={
+                <>
+                  Accept{' '}
+                  <Link to="/terms_conditions">
+                    {' '}
+                    <small>Terms and Conditions</small>{' '}
+                  </Link>{' '}
+                </>
+              }
+            />
           </Form.Group>
           <Form.Text className="text-muted">
             <p className="text-danger">{error}</p>
