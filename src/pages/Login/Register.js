@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import login from '../../assets/images/register.png'
 import Form from 'react-bootstrap/Form'
@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider'
 import { Link } from 'react-router-dom'
 
 const Register = () => {
+  const [error, setError] = useState('')
   const { createUser } = useContext(AuthContext)
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -21,8 +22,12 @@ const Register = () => {
         const user = result.user
         console.log(user)
         form.reset()
+        setError()
       })
-      .catch((error) => console.error(error))
+      .catch((error) => {
+        console.error(error)
+        setError(error.message)
+      })
   }
   return (
     <div className="d-flex">
@@ -72,7 +77,7 @@ const Register = () => {
             <Form.Check type="checkbox" label="Check me out" />
           </Form.Group>
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            <p className="text-danger">{error}</p>
           </Form.Text>
           <Button variant="primary" type="submit">
             Register

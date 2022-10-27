@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
@@ -6,14 +6,17 @@ import login from '../../assets/images/loginpic.jpg'
 import { FaGithub, FaGoogle, IconName } from 'react-icons/fa'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider'
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const [error, setError] = useState('')
   const { popUpGoogleLogin } = useContext(AuthContext)
   const { popUpWithGitLogin } = useContext(AuthContext)
   const googleProvider = new GoogleAuthProvider()
   const gitProvider = new GithubAuthProvider()
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || '/'
 
   const { signIn } = useContext(AuthContext)
   const handleSignIn = (e) => {
@@ -27,9 +30,13 @@ const Login = () => {
         const user = result.user
         console.log(user)
         form.reset()
-        navigate('/')
+        setError('')
+        navigate(from, { replace: true })
       })
-      .catch((error) => console.error(error))
+      .catch((error) => {
+        console.error(error)
+        setError(error.message)
+      })
   }
 
   const handleGoogleSign = () => {
@@ -81,7 +88,7 @@ const Login = () => {
               required
             />
           </Form.Group>
-
+          <p className="text-danger">{error}</p>
           <button className="bg-info px-3 mt-3 mx-2 rounded w-100">
             Login
           </button>
@@ -98,8 +105,9 @@ const Login = () => {
         >
           <FaGithub></FaGithub> github
         </button>
+
         <p className="">
-          <a class="text-muted mx-4" href="#!">
+          <a class="text-muted mx-4" href="">
             Forgot password?
           </a>
         </p>

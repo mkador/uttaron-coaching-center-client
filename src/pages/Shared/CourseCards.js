@@ -1,7 +1,7 @@
 import React from 'react'
 import CardGroup from 'react-bootstrap/CardGroup'
 import Card from 'react-bootstrap/Card'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Image from 'react-bootstrap/Image'
 import {
   FaCartArrowDown,
@@ -10,10 +10,8 @@ import {
   FaShare,
   FaStar,
 } from 'react-icons/fa'
-import { Button } from 'react-bootstrap'
 
 const CourseCards = ({ course }) => {
-  const navigate = useNavigate()
   const {
     id,
     title_name,
@@ -42,14 +40,7 @@ const CourseCards = ({ course }) => {
                 <>
                   {' '}
                   {details.slice(0, 250) + '...'}{' '}
-                  <Button
-                    varriant="primary"
-                    onClick={() =>
-                      navigate(`/course/${course.id}`, { state: course })
-                    }
-                  >
-                    Read More
-                  </Button>{' '}
+                  <Link to={`/course/${course.id}`}>Read More</Link>{' '}
                 </>
               ) : (
                 <>{details}</>
